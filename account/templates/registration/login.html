@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Logowanie {% endblock %}
+
+{% block content %}
+<div class="container text-center py-4">
+ <h1>Logowanie</h1>
+
+{% if form.errors %}
+  <div class="alert alert-warning" role="alert">
+    Nazwa użytkownika lub hasło są nieprawidłowe. Spróbuj ponownie.
+  </div>
+{% else %}
+  <p>Wypełnij poniższy formularz aby się zalogować:</p>
+{% endif %}
+<form action="{% url 'login' %}" method="post">
+    <div class="form-group">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="hidden" name="text" value=" {{ next }}">
+    <button type="submit" class="btn btn-primary">Zaloguj</button>
+    </div>
+</form>
+
+</div>
+
+
+
+{% endblock %}
